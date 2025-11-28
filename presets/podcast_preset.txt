@@ -1,0 +1,5 @@
+Preamp: 0 dB
+# High Pass (Remove ronco de ar condicionado/fundo)
+Filter: ON HP Fc 90 Hz
+# Boost na "Presença" da voz
+Filter: ON PK Fc 2500 Hz Gain 4 dB Q 1.0
