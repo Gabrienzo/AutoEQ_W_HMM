@@ -25,7 +25,7 @@ podcasts_treino/
 # Geralmente não versionamos o binário, pois ele é gerado pelo Colab.
 # Se quiser versionar os modelos para não perder, coloque um # na frente das linhas abaixo.
 *.pkl
-models/*.pkl
+# models/*.pkl
 
 # --- Configurações de IDE e Sistema ---
 .vscode/
