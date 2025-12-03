@@ -5,13 +5,13 @@ import warnings
 import numpy as np
 import librosa
 import joblib
-import pyaudiowpatch as pyaudio # A biblioteca especialista em Loopback
+import pyaudiowpatch as pyaudio
 
 warnings.filterwarnings("ignore")
 
 # --- CONFIGURAÇÕES ---
 APO_CONFIG_PATH = r"C:\Program Files\EqualizerAPO\config\config.txt"
-SAMPLE_RATE = 22050 # Taxa interna para o modelo HMM (não mude)
+SAMPLE_RATE = 22050 # Taxa interna para o modelo HMM
 DURATION = 2.0      # Duração do buffer
 
 def update_apo_config(mode, preset_music_path, preset_podcast_path):
