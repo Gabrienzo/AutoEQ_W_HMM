@@ -61,22 +61,30 @@ def print_debug_status(score_music, score_podcast, active_mode):
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("--- AUTO EQ HMM MONITOR (PyAudioWPatch) ---")
+    
+    # --- O TRUQUE DE SIMPLIFICAÇÃO ---
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+    print("--- AUTO EQ HMM MONITOR ---")
     
     # 1. SETUP DE CAMINHOS
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    path_music_model = os.path.join(script_dir, 'models', 'hmm_music.pkl')
-    path_podcast_model = os.path.join(script_dir, 'models', 'hmm_podcast.pkl')
-    preset_music = os.path.join(script_dir, 'presets', 'music_preset.txt')
-    preset_podcast = os.path.join(script_dir, 'presets', 'podcast_preset.txt')
+    path_music   = "models/hmm_music.pkl"
+    path_podcast = "models/hmm_podcast.pkl"
+    
+    preset_music = os.path.abspath("presets/music_preset.txt")
+    preset_podcast   = os.path.abspath("presets/podcast_preset.txt")
     
     # 2. CARREGAR MODELOS
     print("Carregando modelos HMM...")
     try:
-        hmm_music = joblib.load(path_music_model)
-        hmm_podcast = joblib.load(path_podcast_model)
+        hmm_music = joblib.load(path_music)
+        hmm_podcast = joblib.load(path_podcast)
+    except FileNotFoundError:
+        print("\nERRO: Arquivos de modelo não encontrados.")
+        print(f"O script procurou por: {os.path.abspath(path_music)}")
+        return
     except Exception as e:
-        print(f"\nERRO CRÍTICO: Não foi possível ler os modelos em {script_dir}\\models")
+        print(f"\nERRO CRÍTICO: {e}")
         return
 
     # 3. SETUP DO PYAUDIO (LOOPBACK)
